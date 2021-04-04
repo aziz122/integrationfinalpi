@@ -1,0 +1,85 @@
+{% extends 'back.html.twig' %}
+
+
+
+
+
+
+{% block body4 %}
+
+
+
+    <table class="table table-stripe">
+
+
+
+        <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Categories</th>
+            <th>Nombre de vue</th>
+            <th>nombre de questions</th>
+
+        </tr>
+        </thead>
+
+
+
+        {% for s in categoriesBack %}
+            <tbody>
+
+            <tr>
+                <th>{{ s.id }}</th>
+                <td><a href="{{ path('question_index_back', {'idcategorie': s.id})}}" class="pn">{{ s.nameCategorie }}</a></td>
+
+                <td>{{ s.nbrVueCategorie }}</td>
+                <td>{{ s.nbrQuestion }}</td>
+                <td>
+                    <a href="{{ path('categorie_edit_Back', {'id': s.id}) }}" {#  class="btn"#}><i class="fas fa-edit"></i></a>
+                </td>
+
+            </tr>
+            </tbody>
+        {% endfor %}
+
+
+
+
+
+    </table>
+
+
+
+{% endblock %}
+
+{% block body5 %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+            var currentRequest = null;
+            $("#search").keyup(function(e){
+
+                var value = $(this).val();
+                if(currentRequest != null) {
+                    currentRequest.abort();
+                }
+
+                currentRequest = $.ajax({
+
+                    url : "{{ path('rechercheajaxBack') }}",
+                    type : 'GET',
+                    data: {
+                        'searchValue' : value
+                    },
+
+                    success : function(retour)
+                    {
+                        $('#all').html(retour);
+
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base1.html.twig' %}
+
+
+
+
+
+
+{% block body %}
+<table class="table" >
+    <thead class="thead-dark">
+    <tr>
+        <th>Id</th>
+        <th>Reponses</th>
+
+    </tr>
+    </thead>
+    <body>
+    {% for reponse in reponsesBack %}
+        <tr>
+            <td>{{ reponse.id }}</td>
+
+            <td> {{ reponse.reponse }}</td>
+            <td>
+                <a href="{{ path('reponse_edit_back', {'id': reponse.id}) }}"><i class="fas fa-edit"></i> </a>
+
+            </td>
+        </tr>
+
+    {% endfor %}
+    </body>
+</table>
+
+{% endblock %}

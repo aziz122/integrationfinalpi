@@ -1,0 +1,660 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<!-- Mirrored from themes.webmasterdriver.net/Elemo/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Feb 2021 20:14:51 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Elemo - Directory & Listings HTML Template</title>
+    <!--Bootstrap -->
+    <link rel="stylesheet" href={{ asset('assets/css/bootstrap.min.css')}} type="text/css">
+    <!--Custome Style -->
+    <link rel="stylesheet" href={{ asset('assets/css/style.css')}} type="text/css">
+    <!--OWL Carousel slider-->
+    <link rel="stylesheet" href={{ asset ('assets/css/owl.carousel.css')}} type="text/css">
+    <!--FontAwesome Font Style -->
+    <link href={{ asset('assets/css/font-awesome.min.css')}} rel="stylesheet">
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href={{ asset('assets/images/favicon-icon/apple-touch-icon-144-precomposed.png')}}>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href={{ asset('assets/images/favicon-icon/apple-touch-icon-72-precomposed.png')}}>
+    <link rel="apple-touch-icon-precomposed" href="assets/images/favicon-icon/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="assets/images/favicon-icon/favicon.png">
+    <!-- Google-Font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src={{ asset('https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')}}></script>
+    <script src={{ asset('https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')}})></script>
+    <![endif]-->
+    <!--icone-->
+    <script src={{ asset('https://kit.fontawesome.com/f324d78908.js')}} crossorigin="anonymous"></script>
+</head>
+<body>
+{% block ajax %}
+    <script>
+        $(document).on('click', "#blog-like", function (e)){
+            e.preventDefault();
+            var url = $(this).attr('href');
+            var entityId = $(this).attr('data-entity-id');
+            var csrfToken = $(this).attr('data-csrf-token');
+            var isLiked = $(this).attr('data-liked');
+
+            if(isLiked ==="0"){
+                $(this).attr('data-liked',1);
+                $('.fa-thumbs-up').addClass('liked').text('Unlike')
+            }
+            else{
+                $(this).attr('data-liked',0);
+                $('.fa-thumbs-up').removeClass('liked').text('Like')
+
+            }
+            $.ajax({
+                type:'POST',
+                dataType:'json',
+                data:{'entityId': entityId, 'csrfToken': csrfToken},
+                url: url,
+                success: function (){
+                    console.log('Success');
+                },
+                error: function (){
+
+                }
+            });
+
+        });
+    </script>
+{% endblock %}
+<!-- Header -->
+{% block high %}
+    <header id="header" class="transparent-header">
+        <nav class="navbar navbar-expand-lg fixed-top" id="header_nav">
+            <div class="container-fluid">
+                <div class="row header_row">
+                    <div class="col-md-3 col-sm-12 col-xs-12">
+                        <div class="navbar-header">
+                            <div class="logo"> <a href="index-2.html"><img src="assets/images/logo.png" alt="image"/></a> </div>
+                        </div>
+                        <button id="menu_slide" data-target="#navigation" aria-expanded="false" data-toggle="collapse" class="navbar-toggler" type="button">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </div>
+
+
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                        <div class="collapse navbar-collapse" id="navigation">
+                            <ul class="nav navbar-nav mr-auto">
+                                <li class="menu-item-has-children"><a href="#">Home</a> <span class="arrow"></span>
+                                    <ul class="sub-menu">
+                                        <li><a href="index-2.html">Home 1</a></li>
+                                        <li><a href="index-3.html">Home 2</a></li>
+                                        <li><a href="index-4.html">Home 3</a></li>
+                                        <li><a href="index-5.html">Home 4</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children"><a href="#">Listing</a> <span class="arrow"></span>
+                                    <ul class="sub-menu">
+                                        <li class="menu-item-has-children"><a href="#">Grid Layout</a> <span class="arrow"></span>
+                                            <ul class="sub-menu">
+                                                <li><a href="listing-grid.html">Listing Gird</a></li>
+                                                <li><a href="listing-grid-sidebar.html">Listing Gird Sidebar</a></li>
+                                                <li><a href="listing-grid-map.html">Listing Gird Half Map</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children"><a href="#">List Layout</a> <span class="arrow"></span>
+                                            <ul class="sub-menu">
+                                                <li><a href="listing-listview.html">Listing List</a></li>
+                                                <li><a href="listing-listview-sidebar.html">Listing List Sidebar</a></li>
+                                                <li><a href="listing-listview-map.html">Listing List Half Map</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="menu-item-has-children"><a href="#">Single Listing</a> <span class="arrow"></span>
+                                            <ul class="sub-menu">
+                                                <li><a href="listing-detail-1.html">Style 1</a></li>
+                                                <li><a href="listing-detail-2.html">Style 2</a></li>
+                                                <li><a href="listing-detail-3.html">Style 3</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="event-detail.html">Event Detail</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children"><a href="#">Pages</a> <span class="arrow"></span>
+                                    <ul class="sub-menu">
+                                        <li><a href="about-us.html">About Us</a></li>
+                                        <li><a href="how-it-work.html">How it Work</a></li>
+                                        <li><a href="pricing.html">Pricing</a></li>
+                                        <li><a href="contact-us.html">Contact Us</a></li>
+                                        <li><a href="404-error.html">404 Error</a></li>
+                                        <li><a href="user_listing_list.html">User Listing Page</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children"><a href="#">Blog</a> <span class="arrow"></span>
+                                    <ul class="sub-menu">
+                                        <li><a href="blog-grid-style.html">Blog Grid Style</a></li>
+                                        <li><a href="blog-list-style.html">Blog List Style</a></li>
+                                        <li><a href="blog-single.html">Single Blog</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">Elements</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="header.html">Header Style</a></li>
+                                        <li><a href="footer.html">Footer Style</a></li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children"><a href="#">User Panel</a> <span class="arrow"></span>
+                                    <ul class="sub-menu">
+                                        <li><a href="dashboard.html">Dashboard</a></li>
+                                        <li><a href="dashboard-my-listings.html">My Listings</a></li>
+                                        <li><a href="dashboard-reviews.html">Reviews</a></li>
+                                        <li><a href="dashboard-bookmarks.html">Bookmarks</a></li>
+                                        <li><a href="dashboard-add-listing.html">Add Listing</a></li>
+                                        <li><a href="dashboard-my-events.html">My Events</a></li>
+                                        <li><a href="dashboard-add-event.html">Add Event</a></li>
+                                        <li><a href="dashboard-my-profile.html">My Profile</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="signin.html">Sign In</a></li>
+                                <li><a href="{{ path('categorie_index') }}">Forum</a></li>
+                            </ul>
+                            <div class="submit_listing">
+                                <a href="pricing.html" class="btn outline-btn"><i class="fa  fa-plus-circle"></i> Submit Listing</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+{% endblock %}
+<!-- /Header -->
+{% block body1 %}
+    <!-- Banner -->
+    <section id="banner" class="intro-bg parallex-bg section-padding">
+        <div class="container">
+            <div class="intro_text white-text div_zindex">
+                <h1>Find & Explore Nearest Stores</h1>
+                <h5>Search the best places to eat, drink, and shop nearest to you</h5>
+                <div class="search_form style3">
+                    <form action="http://themes.webmasterdriver.net/Elemo/listing-grid-map.html" method="get">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search By Title">
+                        </div>
+                        <div class="form-group select">
+                            <select class="form-control">
+                                <option>What are you looking for?</option>
+                                <option>Real Estate</option>
+                                <option>Restaurant</option>
+                                <option>Real Estate</option>
+                                <option>Health & Fitness</option>
+                                <option>Beauty & Spas</option>
+                                <option>Hotels & Travel</option>
+                                <option>Automotive</option>
+                            </select>
+                        </div>
+                        <div class="form-group select">
+                            <select class="form-control">
+                                <option>Select a Location</option>
+                                <option>Location 1</option>
+                                <option>Location 2</option>
+                                <option>Location 3</option>
+                                <option>Location 4</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group search_btn">
+                            <input type="submit" value="Search" class="btn btn-block">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="categories-list div_zindex">
+                <div class="all-categories-header">
+                    <h6>Or browse the Listings</h6>
+                    <div class="all-categories-btn">
+                        <a href="listing-grid.html">View More Listings</a>
+                    </div>
+                </div>
+                <div id="categories-slider">
+                    <div class="owl-carousel">
+                        <div class="item">
+                            <a href="#">
+                                <div class="listing-no">12</div>
+                                <div class="category_icon"><img src="assets/images/category-icon1.png" alt="image"></div>
+                                <p>Hotels & Travel</p>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="listing-no">12</div>
+                                <div class="category_icon"><img src="assets/images/category-icon2.png" alt="image"></div>
+                                <p>Hotels & Travel</p>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="listing-no">12</div>
+                                <div class="category_icon"><img src="assets/images/category-icon3.png" alt="image"></div>
+                                <p>Hotels & Travel</p>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="listing-no">12</div>
+                                <div class="category_icon"><img src="assets/images/category-icon4.png" alt="image"></div>
+                                <p>Hotels & Travel</p>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="listing-no">12</div>
+                                <div class="category_icon"><img src="assets/images/category-icon5.png" alt="image"></div>
+                                <p>Hotels & Travel</p>
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#">
+                                <div class="listing-no">12</div>
+                                <div class="category_icon"><img src="assets/images/category-icon6.png" alt="image"></div>
+                                <p>Hotels & Travel</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dark-overlay"></div>
+    </section>
+{% endblock %}
+<!-- /Banner -->
+{% block body2 %}
+    <!-- About-us -->
+    <section id="why-choose" class="section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Why Elemo for your Business?</h2>
+                <p>Olomo provides the various ways that help you can
+                    earn money from your site.</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="about-img text-center">
+                        <img src="assets/images/about-img-3.png" alt="image">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="why-list">
+                        <div class="list-icon-wp">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <h5>Claim Listing</h5>
+                        <p>Another revenue model to monetize from listing. You create a listing on your site and allow the business owner to claim it.</p>
+                    </div>
+                    <div class="why-list">
+                        <div class="list-icon-wp">
+                            <i class="fa fa-money"></i>
+                        </div>
+                        <h5>Paid Listing</h5>
+                        <p>This is the big money maker of your directory site. Listing owners will pay to get their places listed on your site.</p>
+                    </div>
+                    <div class="why-list">
+                        <div class="list-icon-wp">
+                            <i class="fa fa-area-chart"></i>
+                        </div>
+                        <h5>Promote your Business</h5>
+                        <p>You offer Promotion Plans, listing owners will have directories appeared at special spots on site, and at the top of search results page.</p>
+                    </div>
+                    <a href="pricing.html" class="btn mr-2">See Our Pricing</a>
+                    <a href="pricing.html" class="btn black-bg">Submit Listing</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+<!-- /About-us -->
+
+<!-- Listings -->
+{% block body3 %}
+    <section id="listing" class="section-padding gray_bg">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Popular Exclusive Listings</h2>
+                <p>Hotels, Resorts, Motels… It’s there for your choosing. Do a search or check Olomo’s selection below.</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="listing-wp">
+                        <div class="listing-thumb">
+                            <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
+                            <div class="listing_cate">
+                                <span class="cate_icon"><a href="#"><img src="assets/images/category-icon1.png" alt="icon-img"></a></span>
+                                <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
+                            </div>
+                            <div class="featured_label">Featured</div>
+                            <a href="listing-detail-1.html"><img src="assets/images/listing_img6.jpg" alt="image"></a>
+                        </div>
+                        <div class="listing-info-wp">
+                            <h5><a href="listing-detail-1.html">The Morning Hotel</a></h5>
+                            <div class="listing-rating">
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star"></i>
+                                <span>(15 reviews)</span>
+                            </div>
+                            <p>Hotel, Fitness Center Gym, Healthcare</p>
+                            <div class="listing-categories">
+                                <a href="#">Hotels & Travel</a>
+                            </div>
+                        </div>
+                        <div class="listing-footer">
+                            <i class="fa fa-map-marker"></i> Los Angeles
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="listing-wp">
+                        <div class="listing-thumb">
+                            <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
+                            <div class="listing_cate">
+                                <span class="cate_icon"><a href="#"><img src="assets/images/category-icon1.png" alt="icon-img"></a></span>
+                                <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
+                            </div>
+
+                            <a href="listing-detail-2.html"><img src="assets/images/listing_img4.jpg" alt="image"></a>
+                        </div>
+                        <div class="listing-info-wp">
+                            <h5><a href="listing-detail-2.html">Laisa Spa Center</a></h5>
+                            <div class="listing-rating">
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star"></i>
+                                <span>(21 reviews)</span>
+                            </div>
+                            <p>Beauty & Spas</p>
+                            <div class="listing-categories">
+                                <a href="#">Beauty & Spas</a>
+                            </div>
+                        </div>
+                        <div class="listing-footer">
+                            <i class="fa fa-map-marker"></i> Los Angeles
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="listing-wp">
+                        <div class="listing-thumb">
+                            <span class="like_post"><i class="fa fa-bookmark-o"></i></span>
+                            <div class="listing_cate">
+                                <span class="cate_icon"><a href="#"><img src="assets/images/category-icon1.png" alt="icon-img"></a></span>
+                                <span class="listing_like"><a href="#"><i class="fa fa-heart-o"></i></a></span>
+                            </div>
+                            <div class="featured_label">Featured</div>
+                            <a href="listing-detail-3.html"><img src="assets/images/listing_img5.jpg" alt="image"></a>
+                        </div>
+                        <div class="listing-info-wp">
+                            <h5><a href="listing-detail-3.html">Auto Repair Shop</a></h5>
+                            <div class="listing-rating">
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star active"></i>
+                                <i class="fa fa-star"></i>
+                                <span>(20 reviews)</span>
+                            </div>
+                            <p>Via Annia Regilla, Auto Repair Shop</p>
+                            <div class="listing-categories">
+                                <a href="#">Automotive</a>
+                            </div>
+                        </div>
+                        <div class="listing-footer">
+                            <i class="fa fa-map-marker"></i> Los Angeles
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+<!-- Listings -->
+{% block body4 %}
+    <!-- Intro-Video -->
+    <section id="intro-video" class="section-padding dark_mask">
+        <div class="container">
+            <div class="video-wrap">
+                <div id="video-button"><i class="fa fa-play"></i></div>
+                <h2>Save time and hassle. Let us find Quick and Easy</h2>
+            </div>
+            <div class="ques-wrap">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2>Do You Have Questions ?</h2>
+                        <p>If you have any question reach us to ask your questions.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ques-btn">
+                            <a href="contact-us.html" class="btn">Get in touch</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+<!-- /Intro-Video -->
+{% block body5 %}
+    <!-- Testimonials -->
+    <section id="reviews" class="section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Words From Our Customer</h2>
+                <p>Hearing from our users will make you choose your mind!</p>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="reviews-slider" class="owl-carousel">
+                        <div class="item">
+                            <div class="reviews-content">
+                                <div class="reviews-header">
+                                    <div class="img-wp">
+                                        <img src="assets/images/happy-client-01.jpg" alt="image">
+                                    </div>
+                                    <h6>LEVI RATH</h6>
+                                    <p>Vice Director - Wilson Media</p>
+                                </div>
+                                <p>Life before Olomo was very chaotic – we got a lot of phone calls, a lot of mistyped orders. So with Olomo, the ability to see the order directly from the customer makes it so streamlined.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="reviews-content">
+                                <div class="reviews-header">
+                                    <div class="img-wp">
+                                        <img src="assets/images/happy-client-03.jpg" alt="image">
+                                    </div>
+                                    <h6>WILLIAM STEVES</h6>
+                                    <p>CEO of - XYZ PVT.</p>
+                                </div>
+                                <p>Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate extensible procedures.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="reviews-content">
+                                <div class="reviews-header">
+                                    <div class="img-wp">
+                                        <img src="assets/images/happy-client-02.jpg" alt="image">
+                                    </div>
+                                    <h6>ESTHER BUECHE</h6>
+                                    <p>Vice Director - Wilson Media</p>
+                                </div>
+                                <p>Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate extensible procedures.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="ratings-wrap">
+                        <div class="ratings-inner-wp">
+                            <div class="our-ratings">4.8/5</div>
+                            <p class="ratings-label">Rating in</p>
+                            <div class="playstore-btn">
+                                <a href="#"><img src="assets/images/google-play.png" alt="image"></a>
+                            </div>
+                            <p>Great app showing all Listing data at one platform in detailed in secured way.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Testimonials -->
+{% endblock %}
+<!-- Blog -->
+{% block body6 %}
+    <section id="blog" class="section-padding gray_bg">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Articles from Elemo</h2>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer.</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="blog-wrap">
+                        <div class="blog-img">
+                            <a href="#"><img src="assets/images/blog-img-1.jpg" alt="image"></a>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-categories">
+                                <a href="#">Restaurant</a>
+                                <a href="#">Tips & Tricks</a>
+                            </div>
+                            <h5><a href="#">It has survived not only</a></h5>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+                        </div>
+                        <div class="blog-meta">
+                            <p>By: <a href="#">admin</a></p>
+                            <p>On: <a href="#">Feb 28, 2020</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="blog-wrap">
+                        <div class="blog-img">
+                            <a href="#"><img src="assets/images/blog-img-2.jpg" alt="image"></a>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-categories">
+                                <a href="#">Restaurant</a>
+                                <a href="#">Tips & Tricks</a>
+                            </div>
+                            <h5><a href="#">It has survived not only</a></h5>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+                        </div>
+                        <div class="blog-meta">
+                            <p>By: <a href="#">admin</a></p>
+                            <p>On: <a href="#">Feb 28, 2020</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="blog-wrap">
+                        <div class="blog-img">
+                            <a href="#"><img src="assets/images/blog-img-3.jpg" alt="image"></a>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-categories">
+                                <a href="#">Restaurant</a>
+                                <a href="#">Tips & Tricks</a>
+                            </div>
+                            <h5><a href="#">It has survived not only</a></h5>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+                        </div>
+                        <div class="blog-meta">
+                            <p>By: <a href="#">admin</a></p>
+                            <p>On: <a href="#">Feb 28, 2020</a></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
+<!-- /Blog -->
+{% block footer %}
+    <!-- Footer -->
+    <footer id="footer" class="footer_2 secondary-bg">
+        <div class="container">
+            <div class="footer_widgets">
+                <h5>Our Newsletter</h5>
+                <div class="newsletter_wrap">
+                    <form action="#" method="get">
+                        <input type="email" class="form-control" placeholder="Enter Email Address">
+                        <input type="submit" value="subscribe" class="btn">
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer_widgets">
+                <div class="footer_nav">
+                    <ul>
+                        <li><a href="how-it-work.html">How it Work</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="blog-grid-style.html">Blog</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & condition</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer_bottom">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <p>Copyright &copy; 2020 Elemo. All Rights Reserved</p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="follow_us">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+<!-- /Footer -->
+
+<!-- Scripts -->
+<script src={{ asset('assets/js/jquery.min.js')}}></script>
+<script src={{ asset('assets/js/popper.min.js')}}></script>
+<script src={{ asset('assets/js/bootstrap.min.js')}}></script>
+<script src={{ asset('assets/js/interface.js')}}></script>
+<!--Carousel-JS-->
+<script src={{ asset('assets/js/owl.carousel.min.js')}}></script>
+<!--Switcher-->
+<script src={{ asset('assets/switcher/js/switcher.js')}}></script>
+
+</body>
+
+<!-- Mirrored from themes.webmasterdriver.net/Elemo/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Feb 2021 20:16:42 GMT -->
+</html>

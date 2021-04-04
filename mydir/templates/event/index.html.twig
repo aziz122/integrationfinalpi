@@ -1,0 +1,74 @@
+{% extends 'front.html.twig' %}
+{% block body %}
+    <br>
+    <br>
+    <br>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="d-flex align-items-center">
+                <input class="form-control" type="search" id="search" placeholder="Search by Nom">
+                <a  href="{{ path('searchrdvvv') }}"><i class="fa fa-sort"></i></a>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-36 ">
+                <div id="all">
+                {% include 'event/recherche1.html.twig' %}
+                    {{ knp_pagination_render(events) }}
+                </div>
+                <div align="left" border="2" id="search">
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div>
+            <center>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('event_new') }}" class="btn btn-primary btn-lg">
+                        Ajouter un nouvel évennement
+                    </a>
+                    {% endif %}
+
+
+    </center>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $( document ).ready(function() {
+        var currentRequest = null;
+        $("#search").keyup(function(e){
+
+            var value = $(this).val();
+            if(currentRequest != null) {
+                currentRequest.abort();
+            }
+
+            currentRequest = $.ajax({
+
+                url : "{{ path('searchrdvvv') }}",
+                type : 'GET',
+                data: {
+                    'searchValue' : value
+                },
+
+                success : function(retour)
+                {
+                    $('#all').html(retour);
+
+                }
+
+            });
+            return false;
+        });
+    });
+</script>
+</script>
+
+{% endblock %}
+

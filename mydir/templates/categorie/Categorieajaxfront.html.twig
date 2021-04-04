@@ -1,0 +1,61 @@
+
+{% for categorie in categories %}
+    <tr>
+        <td>
+            <div class="posts__body">
+                <div class="posts__item bg-f2f4f6">
+                    <div class="posts__section-left">
+                        <div class="posts__topic">
+                            <div class="posts__content" >
+                                <a href="{{ path('question_index', {'idcategorie': categorie.id})}}" class="pn">{{ categorie.nameCategorie }}</a>
+                                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+
+                                    <div class="btn-group" role="group">
+                                        <i id="btnGroupDrop1" type="button" class="fa fa-ellipsis-h" data-toggle="dropdown" aria-hidden="true" aria-haspopup="true" aria-expanded="false">
+                                        </i>
+                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                            <a class="dropdown-item" href="{{ path('categorie_edit', {'id': categorie.id}) }}">modifier</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="posts__tags tags">
+                                    {% if categorie.tag is not null %}
+                                        <a href="#" class="bg-36b7d7">{{ categorie.tag }}</a>
+                                    {% endif %}
+                                </div>
+                                <div class="topic__footer">
+                                    <div class="col-md-pull-0" >
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="posts__category"><a href="#" class="category"><i class="bg-4436f8"></i>{{ categorie.nameCategorie }}</a></div>
+                    </div>
+                    <div class="posts__section-right">
+                        <div class="posts__users">
+                            <div>
+                                <a href="#" class="avatar"><img src="{{ asset('aassets/fonts/icons/avatars/L.svg') }}" alt="avatar"></a>
+                            </div>
+                            <div>
+                                <a href="#" class="avatar"><img src="{{ asset('aassets/fonts/icons/avatars/T.svg') }}" alt="avatar"></a>
+                            </div>
+                        </div>
+                        <div class="posts__replies">{{ categorie.nbrQuestion }}</div>
+                        <div class="posts__views">
+                            {{ categorie.nbrVueCategorie }}
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </td>
+    </tr>
+
+
+{% endfor %}

@@ -1,0 +1,16 @@
+{% extends 'back.html.twig' %}
+
+
+{% block title %}Nouvelle Commande{% endblock %}
+
+{% block body4 %}
+    <br>
+    <h3>Créer Nouvelle Commande</h3>
+    <br>
+    <br>
+    {{ include('commande/_form.html.twig') }}
+
+    <a href="{{ path('commande_showback') }}">Liste Commandes</a>
+{% endblock %}
+{% block body5 %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'front.html.twig' %}
+
+
+
+{% block body %}
+{{ form_start(form) }}
+    {{ form_row(form.question) }}
+    {{ form_row(form.Tag)}}
+    {{ form_row(form.captcha)}}
+
+    <button class="btn">{{ button_label|default('Ajouter une question') }}</button>
+
+{{ form_end(form) }}
+
+{% endblock %}
+

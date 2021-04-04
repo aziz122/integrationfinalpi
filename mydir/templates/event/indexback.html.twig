@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+{% block body %}
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="row">
+
+                {% for event in events %}
+
+                    <a href="{{ path('event_show', { 'id': event.id }) }}" style="color: black">
+                        <div class="col-md-4">
+                            <div class="card mb-4 card-shadow ">
+                                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="{{ asset('assets/images/'~event.nom_image) }}" data-holder-rendered="true">
+                                <div class="card-body">
+                                    <strong> <p class="card-text " style="font-size: 20px">{{ event.Nom}}</p></strong>
+
+
+                                    <p class="card-text b">{{ event.description}}</p>
+                                    <div class="btn-group">
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="d-flex justify-content-between align-items-center">
+
+
+
+                                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('event_participer', { 'id': event.id }) }}">participer</a></button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('event_edit', {'id': event.id}) }}">edit</a></button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('event_signal', { 'id': event.id }) }}">Signaler</a></button>
+
+                                            {% if  u  in event.users %}
+                                                <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ path('event_annuler', { 'id': event.id }) }}">annuler</a></button>
+                                            {% endif%}
+
+                                        </div>
+                                        <br>
+                                        {{ event.DateDebut ? event.DateDebut|date('Y-m-d') : '' }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    </br>
+    </br>
+    <center>
+        <a href="{{ path('event_new') }}" class="btn btn-primary btn-lg">
+            Ajouter un nouvel évennement
+        </a>
+    </center>
+    </div>
+{% endblock %}
+
+
+
+
+

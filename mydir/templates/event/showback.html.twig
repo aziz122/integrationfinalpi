@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block body1 %}
+{% endblock %}
+
+{% block body2 %}
+{% endblock %}
+
+{% block body3 %}
+{% endblock %}
+{% block body4%}
+
+    <h1>Event</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ event.id }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ event.Nom }}</td>
+        </tr>
+        <tr>
+            <th>Date_debut</th>
+            <td>{{ event.DateDebut ? event.DateDebut|date('Y-m-d') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Date_fin</th>
+            <td>{{ event.dateFin ? event.dateFin|date('Y-m-d') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ event.description }}</td>
+        </tr>
+        <tr>
+            <th>Lieu</th>
+            <td>{{ event.lieu }}</td>
+        </tr>
+        <tr>
+            <th>Prix</th>
+            <td>{{ event.prix }}</td>
+        </tr>
+        <tr>
+            <th>Nb_places</th>
+            <td>{{ event.nbPlaces }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ event.type }}</td>
+        </tr>
+        <tr>
+            <th>Nb_signal</th>
+            <td>{{ event.nbSignal }}</td>
+        </tr>
+        <tr>
+
+            <!-- Preview Image -->
+
+            <img src="{{ asset('assets/images/') }}{{ event.nom_image}}" style="width: 200px;height: 100px">
+
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('event_index') }}">back to list</a>
+
+    <a href="{{ path('event_edit', {'id': event.id}) }}">edit</a>
+
+{{ include('event/_delete_form.html.twig') }}
+
+<div class="top-campaign">
+    <h3 class="title-3 m-b-30">Commentaires : </h3>
+    <table>
+        <tbody>
+        {% for c in comments %}
+        <tr>
+            <td>
+                {{ c.commentaire }} </td>
+            <Td>
+                <a href="{{ path('commentaire_edit', {'id': c.id}) }}">edit</a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+    {% endfor %}
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="card my-4">
+        <br>
+
+
+        <div class="card-body">
+            <h1>Create new Commentaire</h1>
+
+            {{ include('commentaire/_form.html.twig') }}
+        </div>
+    </div>
+    {% endblock %}
+    {% block body5 %}
+    {% endblock %}
+
+    {% block body6 %}
+{% endblock %}

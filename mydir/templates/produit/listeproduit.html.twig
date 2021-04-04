@@ -1,0 +1,187 @@
+{% extends 'front.html.twig' %}
+
+
+{% block body %}
+
+
+    <h3>A&M Products</h3>
+
+    <a href="{{ path('showcart') }}" class="btn float-right" >
+
+        Cart
+
+        <i class="fas fa-shopping-cart"></i>
+    </a>
+
+
+
+    <hr noshade style=" color:yellow; :5px; text-align:right; border:1px solid grey;">
+
+
+
+
+
+    <div style="text-align: center"; class="col-5">
+    <div class="">
+    <div class="d-flex align-items-center">
+        <input class="form-control" type="search" id="search" placeholder="Search Products" >
+        <a  href="{{ path('searchrdvzz') }}"></a>
+    </div>
+    </div>
+    </div>
+
+
+
+    <!--Start class site-->
+
+    <!--End class header top-->
+
+    <!--Start header content-->
+    <div class="header-content">
+
+        <div class="tz-search pull-right">
+
+            <!--Start form search-->
+
+            <!--End Form search-->
+
+            <!--live search-->
+{#            <div class="live-search">#}
+{#                <ul>#}
+
+
+
+{#                    <li>#}
+{#                        <div class="live-img"><img src="images/product/product-search3.jpg" alt="product search one"></div>#}
+{#                        <div class="live-search-content">#}
+{#                            <h6><a href="single-product.html">Defy Advanced</a></h6>#}
+{#                            <span class="live-meta">#}
+{#                                            <a href="single-product.html">$2650.00</a>#}
+{#                                            <span class="product-color">#}
+{#                                                <i class="blueviolet"></i>#}
+{#                                                <i class="light-blue"></i>#}
+{#                                                <i class="orange-dark"></i>#}
+{#                                                <i class="orange"></i>#}
+{#                                            </span>#}
+{#                                        </span>#}
+{#                        </div>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            </div>#}
+            <!--End live search-->
+        </div>
+    </div>
+    <!--End class header content-->
+    </div>
+
+    <!--Start main menu -->
+
+    <!--End stat main menu-->
+
+    </header>
+    <!--End id tz header-->
+
+    <!--Start shop-->
+    <div class="tz-shop">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <!--Start for shop sidebar-->
+
+                    <!--End shop sidebar-->
+
+                </div>
+
+                <div class="col-md-9 w-100">
+
+                    <!--Start shop content-->
+
+
+
+                        <!--Product item-->
+                        <div id="all">
+                        {% include 'produit/produitajax.html.twig' %}
+                        </div>
+                        <tbody align="left" border="2" id="search">
+                        </tbody
+
+
+                        <br>
+                        <br>
+                        <div style="text-align: center;">{{ knp_pagination_render(listproduit) }}</div>
+                </div>
+                <!--End shop content-->
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--End Shop-->
+
+
+    </div><!--End class site-->
+    {% block js %}
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script type='text/javascript' src="js/off-canvas.js"></script>
+        <!--jQuery Countdow-->
+        <script src="js/jquery.plugin.min.js"></script>
+        <script src="js/jquery.countdown.min.js"></script>
+        <!--End Countdow-->
+
+        <script src="js/owl.carousel.js"></script>
+        <script src="js/custom.js"></script>
+        <script>
+            jQuery(function() {
+                jQuery( "#slider-range" ).slider({
+                    range: true,
+                    min: 0,
+                    max: 500,
+                    values: [ 75, 300 ],
+                    slide: function( event, ui ) {
+                        jQuery('.from').text('$' + ui.values[ 0 ]);
+                        jQuery('.to').text('$' + ui.values[ 1 ]);
+                    }
+                });
+                jQuery('.from').text('$' + jQuery( "#slider-range" ).slider( "values", 0 ));
+                jQuery('.to').text('$' + jQuery( "#slider-range" ).slider( "values", 1 ));
+            });
+        </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $( document ).ready(function() {
+        var currentRequest = null;
+        $("#search").keyup(function(e){
+
+            var value = $(this).val();
+            if(currentRequest != null) {
+                currentRequest.abort();
+            }
+
+            currentRequest = $.ajax({
+
+                url : "{{ path('searchrdvzz') }}",
+                type : 'GET',
+                data: {
+                    'searchValue' : value
+                },
+
+                success : function(retour)
+                {
+                    $('#all').html(retour);
+
+                },
+            });
+            return false;
+        });
+    });
+</script>
+</script>
+
+
+{% endblock %}
+
+
+{% endblock %}
+

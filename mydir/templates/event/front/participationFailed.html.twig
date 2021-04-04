@@ -1,0 +1,25 @@
+{% extends 'front.html.twig' %}
+
+
+
+{% block body %}
+
+
+
+
+<div class="col-md-offset-2 col-md-8 col-md-offset-2">
+    <div class="card">
+        <div class="card-header">
+        <h1>{{ msg }}</h1>
+        </div>
+            <!-- Sidebar Widgets Column -->
+    <div class="card-body">
+        <center>
+        <a type="submit" href="{{ path('event_index') }}" class="btn  btn-lg btn-outline-primary">Retour</a>
+        </center>
+    </div>
+
+        </div>
+    <!-- /.container -->
+</div>
+{% endblock%}

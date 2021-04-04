@@ -1,0 +1,148 @@
+{% extends 'front.html.twig' %}
+{% block title %}<title>Nos Exposee</title>{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="listing_header">
+            <h5>Nos Exposee</h5>
+            <div class="layout-switcher">
+                <button><a  href="{{ path('trieex') }}"> TRIE BY Nom</a></button>
+            </div>
+        </div>
+    <div class="row"  id="entitiesNavv">
+        {% for c in exposee %}
+            <div class="col-md-4 grid_view show_listing">
+              <div  class="listing_wrap" >
+
+                  <a   href="{{ path('afficheEX',{'id':c.id }) }}">
+                  <div class="listing_img" >
+                      {% for image in c.photo %}
+                      <img src="{{ asset('images/products/'~image.name) }} " style="width: 50px;">
+                      {% endfor %}
+
+                     <div class="listing_info">
+                         <h1>{{ c.nom }} </h1>
+                         <h4>{{ c.description }} </h4>
+                        <p>{{ c.dateC|date('m/d/Y') }} </p>
+                     </div>
+            </div>
+                 </a>
+            </div>
+            </div>
+
+        {% endfor %}
+
+
+
+    </div>
+     <div class="our_prtners text-center">
+        {{ knp_pagination_render(exposee) }}
+     </div>
+
+    </div>
+
+{% endblock %}
+{% block content %}
+
+    <div class="search_form">
+        <form action="#" method="get">
+
+            <div class="form-group">
+
+
+
+            </div>
+            {% if app.request.get('_route') == 'afficheE' %}
+                <div class="form-group">
+                        <input type="text"  name="search" class="form-control js-user-search" placeholder="Rechercher">
+                </div>
+
+                <div class="btn_group">
+                    <input type="submit" value="Search" class="btn btn-block">
+                </div>
+            {% endif %}
+        </form>
+    </div>
+
+
+
+
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            var searchRequest = null;
+            $(".js-user-search").keyup(function () {
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#entitiesNavv").html('');
+             //   console.log(value.length)
+
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('search_ajax') }}",
+                        data: {
+                            'q': value
+                        },
+                        dataType: "text",
+                        success: function (msg) {
+                            //we need to check if the value is the same
+                            console.log("here")
+
+                                var result = JSON.parse(msg);
+
+                                $.each(result, function (key, arr) {
+                                    $.each(arr, function (id, value) {
+                                        if (key == 'entities') {
+                                            if (id != 'error') {
+                                                {#var assetsDir = "{{ asset('images/products') }}";#}
+
+                                                var exposeeName=value[0];
+                                                var description=value[1];
+
+                                                var idExposee=value[2]
+                                                var exposeeDate=value[3]['date'];
+                                                var photo=value[4];
+                                                {#var go = "{{ path('afficheEX',{'id': }) }}"#}
+                                                entitySelector.append(
+                                                    '<div class="col-md-4 grid_view show_listing">'
+                                                    +'  <div  class="listing_wrap" >'
+                                                    +'<a  id="mypath'+idExposee+'" href="afficheEX/'+idExposee+'">'
+                                                    +'<div class="listing_img" >'
+                                                      + '<div class="listing_info">'
+                                                      +  ' <h1>'+exposeeName+' </h1>'
+                                                     +   '  <h4>'+description+ '</h4>'
+                                                  +  '<p>'+ new Date(exposeeDate).toLocaleDateString("en-FR")+' </p>'
+                                                   + '<div class="listing_img" >'
+                                                   + '<img id="myImgTag'+idExposee+'" src="" style="width:300px">'
+                                                    +'</div>'
+                                                    +'</div>'
+                                                    +'</a>'
+                                                    +'</div>'
+                                                    +'</div>'
+
+                                                );
+                                                console.log(value)
+                                                // document.getElementById("myImgTag"+idExposee).src= assetsDir + '/' + photo.name;
+                                                // document.getElementById("mypath"+idExposee).href= afficheEX +'/'+idExposee;
+
+
+
+
+
+                                            } else {
+                                                entitySelector.append('<li class="errorLi">' + value + '</li>');
+                                            }
+                                        }
+                                    });
+                                });
+
+
+                            }
+
+                    });
+
+            });
+        });
+    </script>
+{% endblock %}

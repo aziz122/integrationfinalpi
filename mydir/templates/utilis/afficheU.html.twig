@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block title %}<title> Nos Users</title>{% endblock %}
+{% block body %}
+    <button><a  href="{{ path('app_register') }}"> ADD <i class="fa fa-align-justify"></i></a></button>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>username</th>
+            <th>Telephone</th>
+            <th>Password</th>
+            <th>role</th>
+            <th>code</th>
+            <th>image</th>
+
+
+        </tr>
+        <tr {% for c in user  %}>
+            <th>{{ c.id }}</th>
+            <th>{{ c.email }}</th>
+            <th>{{ c.name }}</th>
+            <th>{{ c.tel }}</th>
+            <th>{{ c.password }}</th>
+            <th>{{ c.roles["0"] }}</th>
+            <th>{{ c.code }}</th>
+            <td><img src="{{ asset('images/products/'~c.image) }} " style="width: 50px;"></td>
+            <th><a href="{{ path('updateU',{'id':c.id }) }}">Update</a> </th>
+            <th><a href="{{ path('dU',{'id':c.id }) }}"> Delete</a> </th>
+
+
+        </tr {% endfor %}>
+    </table>
+
+{% endblock %}

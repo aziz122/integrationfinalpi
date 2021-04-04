@@ -1,0 +1,26 @@
+{% extends 'front.html.twig' %}
+
+
+{% block body3 %}
+    <h1>Categorie</h1>
+
+    <table class="table">
+        <tbody>
+
+            <tr>
+                <th>NameCategorie</th>
+                <td>{{ categorie.nameCategorie }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('categorie_index') }}">Afficher la liste</a>
+
+    <a href="{{ path('categorie_edit', {'id': categorie.id}) }}">Modifier</a>
+
+    {{ include('categorie/_delete_form.html.twig') }}
+{% endblock %}
+
+
+
+

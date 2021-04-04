@@ -1,0 +1,68 @@
+{% extends 'front.html.twig' %}
+{% block body %}
+
+    <br>
+    <br>
+    <h3>Your cart </h3>
+
+
+
+
+
+    {% if items | length > 0 %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.product.nomprod }}</td>
+                    <td>{{ item.product.prixprod }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.product.prixprod * item.quantity }}</td>
+                    <td>
+                        <a href="{{ path('cart_remove',{'id': item.product.id}) }}" class="btn btn-danger btn-sm">
+                          <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('commande_new',{'id':item.product.id}) }} "class="btn float-right">
+                            <i class="fas text-right"></i>
+                            Order
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total : </td>
+                <td>{{ total }}</td>
+
+            </tr>
+
+        </tfoot>
+    </table>
+    {% else %}
+        <br>
+
+        <br>
+        <br>
+        <h1 class="bg-danger" style="text-align: center">Your cart is empty go fill it !!</h1>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+    {% endif %}
+
+
+{% endblock %}

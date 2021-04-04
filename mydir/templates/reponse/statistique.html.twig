@@ -1,0 +1,187 @@
+{% extends 'base1.html.twig' %}
+
+
+{% block body %}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Elemo - Directory & Listings HTML Template</title>
+    <!--Bootstrap -->
+    <link rel="stylesheet" href={{ asset('assets/css/bootstrap.min.css')}} type="text/css">
+    <!--Custome Style -->
+    <link rel="stylesheet" href={{ asset('assets/css/style.css')}} type="text/css">
+    <!--OWL Carousel slider-->
+    <link rel="stylesheet" href={{ asset ('assets/css/owl.carousel.css')}} type="text/css">
+    <!--FontAwesome Font Style -->
+    <link href={{ asset('assets/css/font-awesome.min.css')}} rel="stylesheet">
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href={{ asset('assets/images/favicon-icon/apple-touch-icon-144-precomposed.png')}}>
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href={{ asset('assets/images/favicon-icon/apple-touch-icon-72-precomposed.png')}}>
+    <link rel="apple-touch-icon-precomposed" href="assets/images/favicon-icon/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="assets/images/favicon-icon/favicon.png">
+    <!-- Google-Font-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src={{ asset('https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')}}></script>
+    <script src={{ asset('https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')}})></script>
+    <![endif]-->
+    <!--icone-->
+    <script src={{ asset('https://kit.fontawesome.com/f324d78908.js')}} crossorigin="anonymous"></script>
+</head>
+<section id="main-content">
+    <section class="wrapper">
+        <div class="container-fluid">
+            <!--overview start-->
+
+            <div class="row">
+
+
+                <div class="col-lg-3">
+                    <div class="card bg-primary text-white mb-3 text-center">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <i class="fas fa-users fa-3x "></i>
+                                </div>
+                                <div class="col-8">
+                                    <h4 class="card-title">{{ user }} utilisateur</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="col-md-3">
+                    <div class="card bg-info text-white mb-3 text-center">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <i class="far fa-comment-dots fa-3x"></i>
+                                </div>
+                                <div class="col-8">
+                                    <h4 class="card-title">{{ categorie }} Categories </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <div class="card bg-warning text-white mb-3 text-center">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <i class="fas fa-question fa-3x"></i>
+                                </div>
+                                <div class="col-8">
+                                    <h4 class="card-title">{{ question }} question</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card bg-success text-white mb-3 text-center">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <i class="fas fa-reply fa-3x"></i>
+                                </div>
+                                <div class="col-8">
+                                    <h4 class="card-title">{{ reponse }} reponses</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="alert alert-success">
+                        <h1 class="alert-heading my-3"><i class="fas fa-arrow-up"></i> les questions les plus vues : </h1>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>question</th>
+                                <th>nbr Vues</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for question in bestquestion %}
+                                <tr>
+                                    <td>
+                                         {{ question.question }}
+                                    </td>
+                                    <td >
+                                    <span class="badge badge-dark">
+                                        {{ question.nbrVue}}
+                                    </span>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+
+
+
+                    <div class="col-lg-6">
+                        <div class="alert alert-danger">
+                            <h1 class="alert-heading my-3"><i class="fas fa-arrow-down"></i> les questions les moins vues : </h1>
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>question</th>
+                                    <th>nbr Vues</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for question in worstquestion %}
+                                    <tr>
+                                        <td>
+                                            {{ question.question }}
+                                        </td>
+                                        <td >
+                                    <span class="badge badge-dark">
+                                        {{ question.nbrVue}}
+                                    </span>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+
+
+
+        </div>
+    </section>
+
+    <!--main content end-->
+</section>
+
+{% endblock %}
+

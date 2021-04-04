@@ -1,0 +1,11 @@
+{% extends 'base1.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
+    <script src="{{ asset('assets/js/algolia-autocomplete.js') }}"></script>
+{% endblock %}
+{% block body %}
+    {{ form_start(form) }}
+
+    {{ form_end(form) }}
+{% endblock %}

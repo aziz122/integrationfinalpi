@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commandes{% endblock %}
+
+{% block Mahmoud %}
+    <h3>Liste Commandes:</h3>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+
+    <table id="tableac" class="table" >
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prix Totale</th>
+                <th>Date Commande</th>
+                <th>Mode Paiement</th>
+                <th>Etat Commande</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.id }}</td>
+                <td>{{ commande.prixtot }}</td>
+                <td>{{ commande.datecomm ? commande.datecomm|date('Y-m-d') : '' }}</td>
+                <td>{{ commande.modepaiement }}</td>
+                <td>{{ commande.etatcomm }}</td>
+                <td>
+
+                    <a href="{{ path('commande_edit', {'id': commande.id}) }}">modifier/supprimer</a>
+                </td>
+
+        </tbody>
+
+
+        <script>
+            $(document).ready(function(){
+                $('#search').keyup(function(){
+                    search_table($(this).val());
+                });
+                function search_table(value){
+                    $('#tableac tbody tr').each(function(){
+                        var found = 'false';
+                        $(this).each(function(){
+                            if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                            {
+                                found = 'true';
+                            }
+                        });
+                        if(found == 'true')
+                        {
+                            $(this).show();
+
+                        }
+                        else
+                        {
+                            $(this).hide();
+
+                        }
+                    });
+                }
+            });
+        </script>
+        {% endfor %}
+        <input type="text" id="search" name="search" class="form-control" placeholder="Search">
+    </table>
+
+
+    <a href="{{ path('commande_new') }}">Créer Commande</a>
+{% endblock %}

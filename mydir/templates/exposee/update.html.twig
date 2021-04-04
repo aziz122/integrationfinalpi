@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Update Exposee</title>{% endblock %}
+{% block body %}
+    <h1>Update Exposee</h1>
+    {{ form_start(form) }}
+
+
+        <h2>Images</h2>
+        {% for c in exposee.photo %}
+            <div>
+                <img src="{{ asset('images/products/'~c.name) }}" alt="" width="150">
+
+                {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+                <a href="{{ path('annonces_delete_image', { id: exposee.id ,idPhotos:c.id })}}">Supprimer</a>
+            </div>
+        {% endfor %}
+
+
+    {{ form_end(form) }}
+
+{% endblock %}

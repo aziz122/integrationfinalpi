@@ -1,0 +1,98 @@
+{% extends 'front.html.twig' %}
+
+
+{% block body %}
+
+
+
+    <style>
+        .pn{
+            color: black;
+        }
+
+        .Vue {
+
+
+            margin-top : 10px;
+            margin-left: 543px;
+        }
+
+
+    </style>
+    <br>
+    <br>
+    <br>
+    <br><br> <br>
+    <h1>Questions</h1>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <table id="tableac" class="table">
+        <thead>
+
+        </thead>
+        <tbody>
+        {% for question in questions %}
+            <tr>
+
+<div class="question">
+                <td><a href="{{ path('reponse_index', {'idquestion': question.id})}}" class="pn">{{ question.question }}</a>
+</div>
+                    <div class="col-md-pull-0" >
+                  <a href="{{ path('question_edit', {'id': question.id}) }}">modifier </a>
+                    </div>
+                   <d-iv class="Vue">
+                      NombreDeVue <br> {{ question.nbrVue }}
+                   </d-iv>
+                </td>
+
+            </tr>
+
+        </tbody>
+            <script>
+                $(document).ready(function(){
+                    $('#search').keyup(function(){
+                        search_table($(this).val());
+                    });
+                    function search_table(value){
+                        $('#tableac tbody tr').each(function(){
+                            var found = 'false';
+                            $(this).each(function(){
+                                if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                                {
+                                    found = 'true';
+                                }
+                            });
+                            if(found == 'true')
+                            {
+                                $(this).show();
+
+                            }
+                            else
+                            {
+                                $(this).hide();
+
+                            }
+                        });
+                    }
+                });
+            </script>
+        {% endfor %}
+
+        <div class="pull-left" >
+            <label></label>
+            <label>
+
+                <input type="text" id="search" name="search" class="form-control" placeholder="Search">
+
+
+            </label>
+
+
+            <input type="submit" class="btn btn-success" value="RECHERCHER">
+        </div>
+    </table>
+
+    <a href="{{ path('question_new' ,{'idcategorie': idcategorie }) }}">Ajouter une question</a>
+
+{% endblock %}
+
+

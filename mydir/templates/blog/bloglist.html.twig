@@ -1,0 +1,32 @@
+{% extends 'base1.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script>
+    <script src="{{ asset('assets/js/algolia-autocomplete.js') }}"></script>
+{% endblock %}
+{% block body %}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Tags</th>
+        <th scope="col">Modifier</th>
+        <th scope="col">Supprimer</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for s in Blog %}
+        <tr>
+            <th scope="row">{{ s.id }}</th>
+            <td>{{ s.titre }}</td>
+            <td>{{ s.tags }}</td>
+            <td><a href="{{ path('updateblog',{'id':s.id})}}">Modifer</a></td>
+            <td><a href="d/{{ s.id }}">Supprimer</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

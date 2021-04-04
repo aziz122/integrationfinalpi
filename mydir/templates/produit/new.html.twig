@@ -1,0 +1,26 @@
+{% extends 'back.html.twig' %}
+
+{% block body4 %}
+    {% block title %}ADD PRODUIT {% endblock title %}
+    <br>
+    <div>
+        {{ form_start(form) }}
+        <table>
+
+            <tr><td>nom_prod</td><td>{{ form_widget(form.nom_prod) }}</td></tr>
+            <tr><td>description_prod</td><td>{{ form_widget(form.description_prod) }}</td></tr>
+            <tr><td>qte_prod</td><td>{{ form_widget(form.qte_prod) }}</td></tr>
+            <tr><td>prix_prod</td><td>{{ form_widget(form.prix_prod) }}</td></tr>
+            <tr><td>img_prod</td><td>{{ form_widget(form.img_prod) }}</td></tr>
+            <tr><td></td><td>{{ form_widget(form.Ajouter) }}</td></tr>
+        </table>
+
+
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
+{% block body5 %}
+
+{% endblock %}

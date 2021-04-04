@@ -1,0 +1,12 @@
+
+
+
+{{ form_start(form) }}
+    {{ form_row(form.question) }}
+    {{ form_row(form.Tag)}}
+    {{ form_row(form.captchaCode)}}
+
+<button class="btn">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}
+
+

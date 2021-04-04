@@ -1,0 +1,19 @@
+{% extends 'front.html.twig' %}
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>Your Order </h3>
+
+
+
+    {{ include('commande/_form.html.twig') }}
+    <a class="btn" href={{ path('payonline') }}>Online</a>
+
+
+{% endblock %}
+
+
+

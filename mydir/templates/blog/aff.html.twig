@@ -1,0 +1,101 @@
+{% extends 'front.html.twig' %}
+{% block titre %}
+    {{ Blog.titre }}
+{% endblock %}
+{% block body %}
+<section id="inner_pages">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <article class="article_wrap single_post">
+                    <div class="post-thumbnail">
+                        {% for image in Blog.photo %}
+                            <img src="{{ asset('uploads/'~image.name) }} " style="width: 300px;">
+                        {% endfor %}
+
+
+                    </div>
+                    <div class="entry-desc">
+                        <div class="entry-content">
+                            <p>{{ Blog.contenu|raw }}</p>
+                        </div>
+                    </div>
+                    <div class="post_tag">
+                        <span>Tag:</span>
+                        {%  set foo = Blog.tags|split(' ') %}
+                        {% for s in foo %}
+                        <a href="#">{{ s }}</a>
+                        {% endfor %}
+
+                    </div>
+                    <!-- You can use Open Graph tags to customize link previews.
+Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+                    <meta property="og:url"           href="blog/{{ Blog.id }}" />
+                    <meta property="og:type"          content="website" />
+                    <meta property="og:title"         content="{{ Blog.titre }}" />
+                    <meta property="og:description"   content="{{ Blog.contenu }}" />
+                    <meta property="og:image"         content="asset('uploads/'~image.name" />
+
+                    <!-- Load Facebook SDK for JavaScript -->
+                    <div id="fb-root"></div>
+                    <script>(function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s); js.id = id;
+                            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));</script>
+
+                    <div class="fb-share-button"
+                         data-href="/your-page.html"
+                         data-layout="button_count">
+                    </div>
+                </article>
+
+                <!-- All-Comments -->
+                <div class="articale_comments">
+                    <div id="comments">
+                        <h4 class="block-head"> Number Of Comments : {{ comments|length }}</h4>
+                        <ul class="commentlist">
+                            {% for s in comments %}
+                            <li class="comment">
+                                <div class="comment-body">
+                                    <div class="comment-author">
+
+                                        <span class="fn">{{ s.name }}</span>
+                                    </div>
+                                    <div class="comment-meta commentmetadata"> <a href="#">Feb 23, 2020 at 12:52 pm</a> </div>
+                                    <div class="comment-content">
+                                        <p>{{ s.contenu|raw }}</p>
+
+                                </div>
+
+
+                            </li>
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Comment-Form -->
+                <div class="comment-respond">
+                    <h4 class="block-head">Leave A Comment</h4>
+
+                        <a class="form-group">
+                            <a href="\..\addComment/{{ Blog.id }}" <button class="btn" name="submit" type="submit">Post Comment</button></a>
+                        </div>
+                </div>
+            </div>
+
+            <aside class="col-md-4">
+                <div class="sidebar">
+                    <div class="sidebar_widgets">
+
+                    </div>
+
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock %}

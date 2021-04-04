@@ -1,0 +1,107 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Statistics {% endblock title %}
+
+{% block body4 %}
+
+
+
+<script src="https://kit.fontawesome.com/f821c4ac43.js" crossorigin="anonymous"></script>
+
+<div class="container-fluid">
+    <h3>Statistics</h3>
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="card bg-danger text-white mb-3 text-center">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <i class="fas fa-shopping-bag fa-3x"></i>
+                        </div>
+                        <div class="col-8">
+                            <h4 class="card-title">{{ produit }}<br> Products</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-3">
+            <div class="card bg-warning text-white mb-3 text-center">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <i class="far fa-credit-card fa-3x"></i>
+                        </div>
+                        <div class="col-8">
+                            <h4 class="card-title">{{ commande }} Purchases</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="alert alert-success">
+                <h3 class="alert-heading my-3"><i class="fas fa-arrow-up"></i>the most popular products</h3>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>number of sales</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for produit in topproduit %}
+                        <tr>
+                            <td>
+                                <img src="{{ asset('uploads/photos/' ~ produit.img_prod) }}" height="20" width="20"> {{ produit.nom_prod }}
+                            </td>
+                            <td>{{ produit.qte_prod }}</td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-6">
+            <div class="alert alert-danger">
+                <h3 class="alert-heading my-3"><i class="fas fa-arrow-down"></i>the least popular products</h3>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>number of sales</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for p in worstproduit %}
+                        <tr>
+                            <td>
+                                <img src="{{ asset('uploads/photos/' ~ p.img_prod) }}" height="20" width="20"> {{ p.nom_prod }}
+                            </td>
+                            <td>{{ p.qte_prod }}</td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block body5 %}
+{% endblock %}
+

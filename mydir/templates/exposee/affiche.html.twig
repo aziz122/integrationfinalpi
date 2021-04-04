@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title %}<title> Exposee</title>{% endblock %}
+{% block body %}
+
+    <button><a  href="{{ path('ajouterEx') }}"> ADD <i class="fa fa-align-justify"></i></a></button>
+    <button><a  href="{{ path('trie') }}"> TRIE BY Nom <i class="fa fa-align-justify"></i></a></button>
+
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>image</th>
+            <th>date</th>
+            <th>nom</th>
+            <th>description</th>
+        </tr>
+        <tr {% for c in exposee %}>
+            <th>{{ c.Id }}</th>
+
+            <th > {% for image in c.photo %}
+                    <img src="{{ asset('images/products/'~image.name) }} " style="width: 50px;">
+                    <a href="{{ path('annonces_delete_image', {id: c.id , idPhotos:image.id })}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}">Supprimer</a>
+                  {% endfor %}
+            <th>{{ c.dateC|date('Y-m-d') }}</th>
+            <th>{{ c.nom }}</th>
+            <th>{{ c.description }}</th>
+
+            <th><a href="{{ path('d',{'id':c.id}) }}"> Delete</a></th>
+
+            <th><a href="{{ path('update',{'id':c.id }) }}">Update</a> </th>
+
+        </tr {% endfor %}>
+
+    </table>
+    <div class="our_prtners text-center">
+        {{ knp_pagination_render(exposee) }}
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'front.html.twig' %}
+
+
+{% block body %}
+
+<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <table class="table">
+        <thead>
+
+
+        </thead>
+        <tbody>
+     <h2>  {{ question.question }} </h2>
+     {% for reponse in question.reponse %}
+
+            {% set nb1=0 %}
+            {% set nb0=0 %}
+            <tr>
+
+                <td>{{ reponse.reponse }}
+                    <div class="pull-right" >
+                        <a href="{{ path('addreaction',{'idquestion':idquestion , 'idreponse' : reponse.id , 'reaction':1}) }}" style="color: green; margin: 5px;"> <i class="fa fa-thumbs-up">{% for reactions in reponse.reaction %} {% if reactions.reaction==1 %} {% set nb1=nb1+1 %} {% endif%} {% endfor %} {{ nb1 }}</i></a>
+                        <a href="{{ path('addreaction',{'idquestion':idquestion , 'idreponse' : reponse.id , 'reaction':0}) }}" style="color: red; margin: 5px;">  <i class="fa fa-thumbs-down">{% for reactions in reponse.reaction %} {% if reactions.reaction==0 %} {% set nb0=nb0+1 %} {% endif%} {% endfor %} {{ nb0 }}</i></a>
+                    </div>
+
+
+                    {#  <a href="#" class="btn btn-primary"> Lire la suite</a>
+                    <a href="#" class="btn btn-link">
+                        <i class="far fa-thumbs-up"></i>
+                        <span class="js-likes">10</span>
+                        <span class="js-label">j'aime</span>
+                    </a> #}
+                    <div class="col-md-pull-0" >
+<a href="{{ path('reponse_edit', {'id': reponse.id}) }}">edit</a></td>
+
+                <style type="text/css">
+                    .btn-like{
+                        color: black;
+                    }
+                    .liked{
+                        color: royalblue;
+                    }
+                </style>
+
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('reponse_new',{'idquestion': idquestion }) }}">Ajouter une commentaire</a>
+{% endblock %}
+

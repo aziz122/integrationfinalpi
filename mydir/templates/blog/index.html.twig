@@ -1,0 +1,159 @@
+{% extends 'front .html.twig' %}
+{% block body %}
+    <input type="text" name="search" class="form-control js-user-search" placeholder="Rechercher">
+    <input type="submit" value="Search" class="btn btn-block">
+
+<!-- Blog -->
+<section id="inner_pages">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/blog">Sort by Flush</a>
+            <a class="dropdown-item" href="/blogV">Sort by Vues</a>
+            <a class="dropdown-item" href="/blogD">Sort by Date</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row" id="entitiesNavv">
+                    {% for s in Blog %}
+                        <article  class="col-sm-6 article_wrap">
+                            <div class="post-thumbnail">
+                                {% set fa =0 %}
+                                {% for image in s.photo %}
+                                    {% if fa ==0 %}
+                                    <a href="blog/{{ s.id }}"><img src="{{ asset('uploads/'~image.name) }} " style="width: 150px;"></a>
+                                    {% set fa =7 %}
+                                    {% endif %}
+                                {% endfor %}
+
+                            <div class="entry-desc">
+                                <h3><a href="blog/{{ s.id }}">{{ s.titre }}</a></h3>
+                                <div class="entry-content">
+                                    <p>{{ s.contenu |length > 50 ? s.contenu|raw|slice(0, 50) ~ '...' : s.contenu|raw  }}</p>
+                                </div>
+                                <a href="/blog/{{ s.id }}" class="read_btn">Read More <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <aside class="col-md-4">
+                <div class="sidebar">
+                    <div class="sidebar_widgets">
+                        <div class="widget_title">
+                            <h4>Tags</h4>
+                        </div>
+                        <ul>
+                            {% set foo = [] %}
+
+                            {% for s in Blog %}
+                            {% set t = s.tags|upper|split(' ') %}
+                            {% for i in t %}
+                                {% set foo = foo|merge([i])%}
+                            {% endfor %}
+
+                            {% endfor %}
+
+                                {% set newArray = [] %}
+
+                                {% for name in foo %}
+                                    {% if name|trim(' ') not in newArray %}
+                                        {% set newArray = newArray|merge([name]) %}
+                                        <li><a href="/blogT/{{ name }}">{{ name }}</a></li>
+
+                                    {% endif %}
+                                {% endfor %}
+
+
+
+
+
+                        </ul>
+                    </div>
+                    {{ knp_pagination_render(Blog) }}
+
+
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            var searchRequest = null;
+            $(".js-user-search").keyup(function () {
+                var minlength = 1;
+                var that = this;
+                var value = $(this).val();
+                var entitySelector = $("#entitiesNavv").html('');
+                console.log(value.length)
+
+                if (searchRequest != null)
+                    searchRequest.abort();
+                searchRequest = $.ajax({
+                    type: "GET",
+                    url: "{{ path('search_ajaxblog') }}",
+                    data: {
+                        'q': value
+                    },
+                    dataType: "text",
+                    success: function (msg) {
+                        //we need to check if the value is the same
+                        if (value == $(that).val()) {
+                            var result = JSON.parse(msg);
+                            $.each(result, function (key, arr) {
+                                $.each(arr, function (id, value) {
+                                    if (key == 'entities') {
+                                        if (id != 'error') {
+                                            {#var assetsDir = "{{ asset('uploads') }}";#}
+
+                                            var contenu=value[0];
+                                            var id=value[1];
+                                            var titre=value[2]
+                                            var date=value[3]['date'];
+                                            var photo=value[4];
+                                            {#var go = "{{ path('afficheEX',{'id': }) }}"#}
+                                            entitySelector.append(
+                                                +'<article  class="col-sm-6 article_wrap">'
+                                                +'<div class="post-thumbnail">'
+                                                +'<div class="entry-desc">'
+                                                +'<h3>'+titre+'</h3>'
+                                                +'<div class="entry-content">'
+                                                +'<p>'+contenu+'</p>'
+                                                +'</div>'
+                                            +'<i class="fa fa-angle-right"></i>'
+                                        +'</div>'
+                                        +'</article>'
+                                                +'  </div>'
+
+                                            );
+                                            // document.getElementById("myImgTag"+id).src= assetsDir + '/' + photo.name;
+                                            // document.getElementById("mypath"+idExposee).href= afficheEX +'/'+idExposee;
+
+
+
+
+
+                                        } else {
+                                            entitySelector.append('<li class="errorLi">' + value + '</li>');
+                                        }
+                                    }
+                                });
+                            });
+
+
+                        }
+                    }
+                });
+
+            });
+        });
+    </script>
+<!-- /Blog -->
+{% endblock %}

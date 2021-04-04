@@ -1,0 +1,40 @@
+{% extends 'base1.html.twig' %}
+
+
+
+
+
+
+{% block body %}
+
+    <table class="table" >
+        <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Questions</th>
+            <th>nombre de vue</th>
+            <th>nombre de questions</th>
+
+        </tr>
+        </thead>
+        <body>
+        {% for question in questionsBack %}
+            <tr>
+                <td>{{ question.id }}</td>
+
+                <td><a href="{{ path('reponse_index_back', {'idquestion': question.id})}}" class="pn">{{ question.question }}</a></td>
+                <td>{{ question.nbrVue }}</td>
+                <td>{{  question.nbrReponse}}</td>
+                <td>
+                    <a href="{{ path('question_edit_back', {'id': question.id}) }}"><i class="fas fa-edit"></i> </a>
+                    
+
+
+                </td>
+            </tr>
+
+        {% endfor %}
+        </body>
+    </table>
+{% endblock %}
+

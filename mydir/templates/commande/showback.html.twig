@@ -1,0 +1,74 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Commandes{% endblock %}
+
+{% block body4 %}
+    <h3>Liste Commandes:</h3>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <table id="tableac" class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Order Date</th>
+            <th>Client Address</th>
+            <th>Payment Mode</th>
+            <th>Phone Number</th>
+            <th>Mail Address</th>
+            <th>Total Price</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for commande in commandes %}
+            <tr>
+                <td>{{ commande.id }}</td>
+                <td>{{ commande.datecomm ? commande.datecomm|date('Y-m-d') : '' }}</td>
+                <td>{{ commande.addressecom }}</td>
+                <td>{{ commande.etatcomm }}</td>
+                <td>{{ commande.numtel }}</td>
+                <td>{{ commande.mail }}</td>
+                <td>{{ commande.prixtot }}</td>
+                <td>
+
+                    <a href="{{ path('commande_editback', {'id': commande.id}) }}">modifier/supprimer</a>
+
+                </td>
+                <script>
+                    $(document).ready(function(){
+                        $('#search').keyup(function(){
+                            search_table($(this).val());
+                        });
+                        function search_table(value){
+                            $('#tableac tbody tr').each(function(){
+                                var found = 'false';
+                                $(this).each(function(){
+                                    if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                                    {
+                                        found = 'true';
+                                    }
+                                });
+                                if(found == 'true')
+                                {
+                                    $(this).show();
+
+                                }
+                                else
+                                {
+                                    $(this).hide();
+
+                                }
+                            });
+                        }
+                    });
+                </script>
+        {% endfor %}
+                <input type="text" id="search" name="search" class="form-control" placeholder="Search">
+        </tbody>
+
+    </table>
+
+    <a href="{{ path('commande_newback') }}">Créer Commande</a>
+    <a href ="{{ path('impp') }}" class="btn btn-primary" >imprimer</a>
+{% endblock %}
+{% block body5 %}
+{% endblock %}

@@ -1,0 +1,41 @@
+<div class="tz-product row grid-eff">
+
+{% for i in listproduit %}
+    <div class="product-item col-md-4 col-sm-6">
+        <div class="item">
+            <div class="product-item-inner">
+                <div class="product-thumb">
+                    <img src="{{ asset('uploads/photos/' ~ i.imgprod) }}">
+                </div>
+                <div class="product-info">
+                    <h4><a href="shop.html">{{ i.nomprod }}</a></h4>
+                    <span class="p-meta">
+                                                <span class="p-price">{{ i.prixprod }} TND</span>
+                                                <span class="p-vote">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            </span>
+                    <span class="p-color">
+                                                <i class="fa fa-circle light-blue"></i>
+                                                <i class="fa fa-circle orange"></i>
+                                                <i class="fa fa-circle blueviolet"></i>
+                                                <i class="fa fa-circle orange-dark"></i>
+                                                <i class="fa fa-circle steelblue"></i>
+                                            </span>
+
+                    <span class="p-mask">
+                                                <a href="{{ path('Paniers',{'id':i.id}) }} "class="add-to-cart">Add To Cart</a>
+                                                <a href="{{ path('commande_new',{'id':i.id}) }} "class="add-to-cart">Buy</a>
+
+                                            </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+</div>

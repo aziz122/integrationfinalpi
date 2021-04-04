@@ -1,0 +1,13 @@
+{% extends 'front.html.twig' %}
+
+
+{% block body3 %}
+    <form method="post" action="{{ path('categorie_delete', {'id': categorie.id}) }}" onsubmit="return confirm('etes vous sure de supprimer!');">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ categorie.id) }}">
+        <button class="btn">Supprimer</button>
+    </form>
+
+
+    {% endblock %}
+

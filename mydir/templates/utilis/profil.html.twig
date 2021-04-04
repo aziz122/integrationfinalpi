@@ -1,0 +1,48 @@
+{% extends 'front.html.twig' %}
+{% block title %}<title>Profile</title>{% endblock %}
+{% block body %}
+    <div class="container">
+        <!-- Titlebar -->
+        <div id="titlebar">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>My Profile</h2>
+                    <!-- Breadcrumbs -->
+                    <nav id="breadcrumbs">
+                        <ul>
+                            <li><a href="{{ path('exposee') }}">Let me See how Happy are You?</a></li>
+                            <li><a href="{{ path('') }}">Home</a></li>
+                            <li><a href="{{ path('dprofile',{'id':user.id }) }}">Delete my account</a></li>
+                            <li>My Profile</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Profile -->
+            <div class="col-lg-12 col-md-12">
+                <div class="dashboard-list-box">
+                    <div class="user_image">
+                        <img src="{{ asset('images/products/'~user.image) }} " alt="image"  style="width: 300px;">
+                        <div class="buttons-to-right">
+                            <a href="{{ path('updateprofile',{'id':user.id }) }}" class="button gray"><i class="fa fa-pencil"></i> Edit Profile</a>
+                        </div>
+                    </div>
+                    <div class="user_info">
+                        <ul>
+                            <li><span>Name:</span>{{ user.name }}</li>
+                            <li><span>Email:</span> {{ user.email }}</li>
+                            <li><span>Phone:</span>{{ user.tel }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,690 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body1 %}
+
+    <br>
+    <br>
+    <h3>A&M Products</h3>
+{% endblock %}
+
+{% block Mahmoud %}
+{% endblock %}
+
+
+{% block body2 %}
+
+{% endblock %}
+
+{% block body3 %}
+
+
+    <!--Start class site-->
+
+                <!--End class header top-->
+
+                <!--Start header content-->
+                <div class="header-content">
+
+                    <div class="tz-search pull-right">
+
+                        <!--Start form search-->
+
+                        <!--End Form search-->
+
+                        <!--live search-->
+                        <div class="live-search">
+                            <ul>
+                                <li>
+                                    <div class="live-img"><img src="images/product/product-search1.jpg" alt="product search one"></div>
+                                    <div class="live-search-content">
+                                        <h6><a href="single-product.html">Defy Advanced</a></h6>
+                                        <span class="live-meta">
+                                            <a href="single-product.html">$2650.00</a>
+                                            <span class="product-color">
+                                                <i class="light-blue"></i>
+                                                <i class="orange"></i>
+                                                <i class="orange-dark"></i>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="live-img"><img src="images/product/product-search2.jpg" alt="product search two"></div>
+                                    <div class="live-search-content">
+                                        <h6><a href="single-product.html">Defy Advanced</a></h6>
+                                        <span class="live-meta">
+                                            <a href="single-product.html">$2650.00</a>
+                                            <span class="product-color">
+                                                <i class="light-blue"></i>
+                                                <i class="orange"></i>
+                                                <i class="blueviolet"></i>
+                                                <i class="orange-dark"></i>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="live-img"><img src="images/product/product-search3.jpg" alt="product search one"></div>
+                                    <div class="live-search-content">
+                                        <h6><a href="single-product.html">Defy Advanced</a></h6>
+                                        <span class="live-meta">
+                                            <a href="single-product.html">$2650.00</a>
+                                            <span class="product-color">
+                                                <i class="blueviolet"></i>
+                                                <i class="light-blue"></i>
+                                                <i class="orange-dark"></i>
+                                                <i class="orange"></i>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--End live search-->
+                    </div>
+                </div>
+                <!--End class header content-->
+            </div>
+
+            <!--Start main menu -->
+
+            <!--End stat main menu-->
+
+        </header>
+        <!--End id tz header-->
+
+        <!--Start shop-->
+        <div class="tz-shop">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <!--Start for shop sidebar-->
+
+                        <!--End shop sidebar-->
+
+                    </div>
+
+                    <div class="col-md-9">
+
+                        <!--Start shop content-->
+
+                            <div class="catalog-meta">
+                                <div class="catalog_top">
+                                <span class="style-switch">
+                                    <a class="nav-grid-view fa fa-th-large active"></a>
+                                    <a class="nav-list-view fa fa-list"></a>
+                                </span>
+                                    <form class="shop-order">
+                                        <label class="form-arrow">
+                                            <select class="number-item" name="number_item">
+                                                <option value="12">12 items/page</option>
+                                                <option value="6">6 items/page</option>
+                                                <option value="3">3 items/page</option>
+                                            </select>
+                                        </label>
+                                        <label class="form-arrow">
+                                            <select name="orderby" class="orderby">
+                                                <option value="'">Sort By: Position</option>
+                                                <option value="rating">Sort by rating</option>
+                                                <option value="date">Sort by newness</option>
+                                            </select>
+                                        </label>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="tz-product row grid-eff">
+
+                                <!--Product item-->
+                                {% for i in listproduit %}
+                                    <div class="product-item col-md-4 col-sm-6">
+                                        <div class="item">
+                                            <div class="product-item-inner">
+                                                <div class="product-thumb">
+                                                    <img src="{{ asset('uploads/photos/' ~ i.imgprod) }}">
+                                                </div>
+                                                <div class="product-info">
+                                                    <h4><a href="shop.html">{{ i.nomprod }}</a></h4>
+                                                    <span class="p-meta">
+                                                <span class="p-price">{{ i.prixprod }} Dt</span>
+                                                <span class="p-vote">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            </span>
+                                                    <span class="p-color">
+                                                 <i class="fa fa-circle light-blue"></i>
+                                                <i class="fa fa-circle orange"></i>
+                                                <i class="fa fa-circle blueviolet"></i>
+                                                <i class="fa fa-circle orange-dark"></i>
+                                                <i class="fa fa-circle steelblue"></i>
+                                            </span>
+                                                    <p>
+                                                        Excellence is never an accident. It is always the result of high intention and intelligent execution; it represents the wise choice of many alternatives.
+                                                    </p>
+                                                    <span class="p-mask">
+                                                <a href="{{ path('Paniers',{'id':i.id}) }} "class="add-to-cart">Buy</a>
+                                                <a href="#" class="add-to-wishlist"><i class="fa fa-heart"></i> Add to wishlist</a>
+
+                                            </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                                <div style="text-align: center">{{ knp_pagination_render(listproduit) }}</div>
+
+
+                                <!--End product item-->
+                                {#
+                                <!--Product item-->
+                                <div class="product-item col-md-4 col-sm-6">
+                                    <div class="item">
+                                        <div class="product-item-inner">
+                                            <div class="product-thumb">
+                                                <img src="images/product/shop2.jpg" alt="Team Hoody">
+                                            </div>
+                                            <div class="product-info">
+                                                <h4><a href="shop.html">Team Hoody</a></h4>
+                                                <span class="p-meta">
+                                                <span class="p-price">$105.00</span>
+                                                <span class="p-vote">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            </span>
+                                                <span class="p-color">
+                                                <i class="fa fa-circle steelblue"></i>
+                                                <i class="fa fa-circle light-blue"></i>
+                                                <i class="fa fa-circle orange"></i>
+                                                <i class="fa fa-circle blueviolet"></i>
+                                                <i class="fa fa-circle orange-dark"></i>
+                                            </span>
+                                                <p>
+                                                    Excellence is never an accident. It is always the result of high intention and intelligent execution; it represents the wise choice of many alternatives.
+                                                </p>
+                                                <span class="p-mask">
+                                                <a href="shop-cart.html" class="add-to-cart">Add to cart</a>
+                                                <a href="#" class="add-to-wishlist"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                               <span class="quick-view">
+                                                    <a href="#"><i class="fa fa-eye"></i> Quick view</a>
+                                                </span>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End product item-->
+
+                                <!--Product item-->
+                                <div class="product-item col-md-4 col-sm-6">
+                                    <div class="item">
+                                        <div class="product-item-inner">
+                                            <div class="product-thumb">
+                                                <img src="images/product/shop3.jpg" alt="Team Hoody">
+                                            </div>
+                                            <div class="product-info">
+                                                <h4><a href="shop.html">Defy Advanced</a></h4>
+                                                <span class="p-meta">
+                                                <span class="p-price">$2650.00</span>
+                                                <span class="p-vote">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            </span>
+                                                <span class="p-color">
+                                                <i class="fa fa-circle steelblue"></i>
+                                                <i class="fa fa-circle light-blue"></i>
+                                                <i class="fa fa-circle orange"></i>
+                                                <i class="fa fa-circle blueviolet"></i>
+                                                <i class="fa fa-circle orange-dark"></i>
+                                            </span>
+                                                <p>
+                                                    Excellence is never an accident. It is always the result of high intention and intelligent execution; it represents the wise choice of many alternatives.
+                                                </p>
+                                                <span class="p-mask">
+                                                <a href="shop-cart.html" class="add-to-cart">Add to cart</a>
+                                                <a href="#" class="add-to-wishlist"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                               <span class="quick-view">
+                                                    <a href="#"><i class="fa fa-eye"></i> Quick view</a>
+                                                </span>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End product item-->
+
+                                <!--Product item-->
+                                <div class="product-item col-md-4 col-sm-6">
+                                    <div class="item">
+                                        <div class="product-item-inner">
+                                            <div class="product-thumb">
+                                                <img src="images/product/shop4.jpg" alt="Team Hoody">
+                                            </div>
+                                            <div class="product-info">
+                                                <h4><a href="shop.html">Defy Advanced 2</a></h4>
+                                                <span class="p-meta">
+                                                <span class="p-price">$2125.00</span>
+                                                <span class="p-vote">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            </span>
+                                                <span class="p-color">
+                                                <i class="fa fa-circle orange"></i>
+                                                <i class="fa fa-circle steelblue"></i>
+                                                <i class="fa fa-circle light-blue"></i>
+                                                <i class="fa fa-circle blueviolet"></i>
+                                                <i class="fa fa-circle orange-dark"></i>
+                                            </span>
+                                                <p>
+                                                    Excellence is never an accident. It is always the result of high intention and intelligent execution; it represents the wise choice of many alternatives.
+                                                </p>
+                                                <span class="p-mask">
+                                                <a href="shop-cart.html" class="add-to-cart">Add to cart</a>
+                                                <a href="#" class="add-to-wishlist"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                               <span class="quick-view">
+                                                    <a href="#"><i class="fa fa-eye"></i> Quick view</a>
+                                                </span>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End product item-->
+
+                                <!--Product item-->
+                                <div class="product-item col-md-4 col-sm-6">
+                                    <div class="item">
+                                        <div class="product-item-inner">
+                                            <div class="product-thumb">
+                                                <img src="images/product/shop5.jpg" alt="Team Hoody">
+                                            </div>
+                                            <div class="product-info">
+                                                <h4><a href="shop.html">City Pedals Sport</a></h4>
+                                                <span class="p-meta">
+                                                <span class="p-price">$18.00</span>
+                                                <span class="p-vote">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            </span>
+                                                <span class="p-color">
+                                                <i class="fa fa-circle orange"></i>
+                                                <i class="fa fa-circle steelblue"></i>
+                                                <i class="fa fa-circle light-blue"></i>
+                                                <i class="fa fa-circle blueviolet"></i>
+                                                <i class="fa fa-circle orange-dark"></i>
+                                            </span>
+                                                <p>
+                                                    Excellence is never an accident. It is always the result of high intention and intelligent execution; it represents the wise choice of many alternatives.
+                                                </p>
+                                                <span class="p-mask">
+                                                <a href="shop-cart.html" class="add-to-cart">Add to cart</a>
+                                                <a href="#" class="add-to-wishlist"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                               <span class="quick-view">
+                                                    <a href="#"><i class="fa fa-eye"></i> Quick view</a>
+                                                </span>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End product item-->
+
+                                <!--Product item-->
+                                <div class="product-item col-md-4 col-sm-6">
+                                    <div class="item">
+                                        <div class="product-item-inner">
+                                            <div class="product-thumb">
+                                                <img src="images/product/shop6.jpg" alt="Neos Ant+ Wireless">
+                                            </div>
+                                            <div class="product-info">
+                                                <h4><a href="shop.html">Neos Ant+ Wireless</a></h4>
+                                                <span class="p-meta">
+                                                <span class="p-price">$70.00</span>
+                                                <span class="p-vote">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            </span>
+                                                <span class="p-color">
+                                                <i class="fa fa-circle orange"></i>
+                                                <i class="fa fa-circle steelblue"></i>
+                                                <i class="fa fa-circle light-blue"></i>
+                                                <i class="fa fa-circle blueviolet"></i>
+                                                <i class="fa fa-circle orange-dark"></i>
+                                            </span>
+                                                <p>
+                                                    Excellence is never an accident. It is always the result of high intention and intelligent execution; it represents the wise choice of many alternatives.
+                                                </p>
+                                                <span class="p-mask">
+                                                <a href="shop-cart.html" class="add-to-cart">Add to cart</a>
+                                                <a href="#" class="add-to-wishlist"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                               <span class="quick-view">
+                                                    <a href="#"><i class="fa fa-eye"></i> Quick view</a>
+                                                </span>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End product item-->
+
+                                <!--Product item-->
+                                <div class="product-item col-md-4 col-sm-6">
+                                    <div class="item">
+                                        <div class="product-item-inner">
+                                            <div class="product-thumb">
+                                                <img src="images/product/shop7.jpg" alt="Neos Ant+ Wireless">
+                                            </div>
+                                            <div class="product-info">
+                                                <h4><a href="shop.html">Rack-It Tour Rack</a></h4>
+                                                <span class="p-meta">
+                                                <span class="p-price">$480.00</span>
+                                                <span class="p-vote">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            </span>
+                                                <span class="p-color">
+                                                <i class="fa fa-circle orange"></i>
+                                                <i class="fa fa-circle steelblue"></i>
+                                                <i class="fa fa-circle light-blue"></i>
+                                                <i class="fa fa-circle blueviolet"></i>
+                                                <i class="fa fa-circle orange-dark"></i>
+                                            </span>
+                                                <p>
+                                                    Excellence is never an accident. It is always the result of high intention and intelligent execution; it represents the wise choice of many alternatives.
+                                                </p>
+                                                <span class="p-mask">
+                                                <a href="shop-cart.html" class="add-to-cart">Add to cart</a>
+                                                <a href="#" class="add-to-wishlist"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                               <span class="quick-view">
+                                                    <a href="#"><i class="fa fa-eye"></i> Quick view</a>
+                                                </span>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End product item-->
+
+                                <!--Product item-->
+                                <div class="product-item col-md-4 col-sm-6">
+                                    <div class="item">
+                                        <div class="product-item-inner">
+                                            <div class="product-thumb">
+                                                <img src="images/product/shop8.jpg" alt="Lust Advanced">
+                                            </div>
+                                            <div class="product-info">
+                                                <h4><a href="shop.html">Lust Advanced</a></h4>
+                                                <span class="p-meta">
+                                                <span class="p-price">$8050.00</span>
+                                                <span class="p-vote">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            </span>
+                                                <span class="p-color">
+                                                <i class="fa fa-circle orange"></i>
+                                                <i class="fa fa-circle steelblue"></i>
+                                                <i class="fa fa-circle light-blue"></i>
+                                                <i class="fa fa-circle blueviolet"></i>
+                                                <i class="fa fa-circle orange-dark"></i>
+                                            </span>
+                                                <p>
+                                                    Excellence is never an accident. It is always the result of high intention and intelligent execution; it represents the wise choice of many alternatives.
+                                                </p>
+                                                <span class="p-mask">
+                                                <a href="shop-cart.html" class="add-to-cart">Add to cart</a>
+                                                <a href="#" class="add-to-wishlist"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                               <span class="quick-view">
+                                                    <a href="#"><i class="fa fa-eye"></i> Quick view</a>
+                                                </span>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End product item-->
+
+                                <!--Product item-->
+                                <div class="product-item col-md-4 col-sm-6">
+                                    <div class="item">
+                                        <div class="product-item-inner">
+                                            <div class="product-thumb">
+                                                <img src="images/product/shop9.jpg" alt="Cruiser Bells">
+                                            </div>
+                                            <div class="product-info">
+                                                <h4><a href="shop.html">Cruiser Bells</a></h4>
+                                                <span class="p-meta">
+                                                <span class="p-price">$10.00</span>
+                                                <span class="p-vote">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            </span>
+                                                <span class="p-color">
+                                                <i class="fa fa-circle orange"></i>
+                                                <i class="fa fa-circle steelblue"></i>
+                                                <i class="fa fa-circle light-blue"></i>
+                                                <i class="fa fa-circle blueviolet"></i>
+                                                <i class="fa fa-circle orange-dark"></i>
+                                            </span>
+                                                <p>
+                                                    Excellence is never an accident. It is always the result of high intention and intelligent execution; it represents the wise choice of many alternatives.
+                                                </p>
+                                                <span class="p-mask">
+                                                <a href="shop-cart.html" class="add-to-cart">Add to cart</a>
+                                                <a href="#" class="add-to-wishlist"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                               <span class="quick-view">
+                                                    <a href="#"><i class="fa fa-eye"></i> Quick view</a>
+                                                </span>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End product item-->
+
+                                <!--Product item-->
+                                <div class="product-item col-md-4 col-sm-6">
+                                    <div class="item">
+                                        <div class="product-item-inner">
+                                            <div class="product-thumb">
+                                                <img src="images/product/shop10.jpg" alt="GFR">
+                                            </div>
+                                            <div class="product-info">
+                                                <h4><a href="shop.html">GFR F/W</a></h4>
+                                                <span class="p-meta">
+                                                <span class="p-price">$270.00</span>
+                                                <span class="p-vote">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            </span>
+                                                <span class="p-color">
+                                                <i class="fa fa-circle orange"></i>
+                                                <i class="fa fa-circle steelblue"></i>
+                                                <i class="fa fa-circle light-blue"></i>
+                                                <i class="fa fa-circle blueviolet"></i>
+                                                <i class="fa fa-circle orange-dark"></i>
+                                            </span>
+                                                <p>
+                                                    Excellence is never an accident. It is always the result of high intention and intelligent execution; it represents the wise choice of many alternatives.
+                                                </p>
+                                                <span class="p-mask">
+                                                <a href="shop-cart.html" class="add-to-cart">Add to cart</a>
+                                                <a href="#" class="add-to-wishlist"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                               <span class="quick-view">
+                                                    <a href="#"><i class="fa fa-eye"></i> Quick view</a>
+                                                </span>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End product item-->
+
+                                <!--Product item-->
+                                <div class="product-item col-md-4 col-sm-6">
+                                    <div class="item">
+                                        <div class="product-item-inner">
+                                            <div class="product-thumb">
+                                                <img src="images/product/shop11.jpg" alt="Race Day Tri Suit">
+                                            </div>
+                                            <div class="product-info">
+                                                <h4><a href="shop.html">Race Day Tri Suit</a></h4>
+                                                <span class="p-meta">
+                                                <span class="p-price">$270.00</span>
+                                                <span class="p-vote">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            </span>
+                                                <span class="p-color">
+                                                <i class="fa fa-circle orange"></i>
+                                                <i class="fa fa-circle steelblue"></i>
+                                                <i class="fa fa-circle light-blue"></i>
+                                                <i class="fa fa-circle blueviolet"></i>
+                                                <i class="fa fa-circle orange-dark"></i>
+                                            </span>
+                                                <p>
+                                                    Excellence is never an accident. It is always the result of high intention and intelligent execution; it represents the wise choice of many alternatives.
+                                                </p>
+                                                <span class="p-mask">
+                                                <a href="shop-cart.html" class="add-to-cart">Add to cart</a>
+                                                <a href="#" class="add-to-wishlist"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                               <span class="quick-view">
+                                                    <a href="#"><i class="fa fa-eye"></i> Quick view</a>
+                                                </span>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End product item-->
+
+                                <!--Product item-->
+                                <div class="product-item col-md-4 col-sm-6">
+                                    <div class="item">
+                                        <div class="product-item-inner">
+                                            <div class="product-thumb">
+                                                <img src="images/product/shop12.jpg" alt="Gloss">
+                                            </div>
+                                            <div class="product-info">
+                                                <h4><a href="shop.html">Gloss</a></h4>
+                                                <span class="p-meta">
+                                                <span class="p-price">$325.00</span>
+                                                <span class="p-vote">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-half-o"></i>
+                                                </span>
+                                            </span>
+                                                <span class="p-color">
+                                                <i class="fa fa-circle orange"></i>
+                                                <i class="fa fa-circle steelblue"></i>
+                                                <i class="fa fa-circle light-blue"></i>
+                                                <i class="fa fa-circle blueviolet"></i>
+                                                <i class="fa fa-circle orange-dark"></i>
+                                            </span>
+                                                <p>
+                                                    Excellence is never an accident. It is always the result of high intention and intelligent execution; it represents the wise choice of many alternatives.
+                                                </p>
+                                                <span class="p-mask">
+                                                <a href="shop-cart.html" class="add-to-cart">Add to cart</a>
+                                                <a href="#" class="add-to-wishlist"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                               <span class="quick-view">
+                                                    <a href="#"><i class="fa fa-eye"></i> Quick view</a>
+                                                </span>
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                #}
+                                <!--End product item-->
+
+                            </div>
+
+
+                        </div>
+                        <!--End shop content-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Shop-->
+
+
+    </div><!--End class site-->
+    {% block js %}
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script type='text/javascript' src="js/off-canvas.js"></script>
+        <!--jQuery Countdow-->
+        <script src="js/jquery.plugin.min.js"></script>
+        <script src="js/jquery.countdown.min.js"></script>
+        <!--End Countdow-->
+
+        <script src="js/owl.carousel.js"></script>
+        <script src="js/custom.js"></script>
+        <script>
+            jQuery(function() {
+                jQuery( "#slider-range" ).slider({
+                    range: true,
+                    min: 0,
+                    max: 500,
+                    values: [ 75, 300 ],
+                    slide: function( event, ui ) {
+                        jQuery('.from').text('$' + ui.values[ 0 ]);
+                        jQuery('.to').text('$' + ui.values[ 1 ]);
+                    }
+                });
+                jQuery('.from').text('$' + jQuery( "#slider-range" ).slider( "values", 0 ));
+                jQuery('.to').text('$' + jQuery( "#slider-range" ).slider( "values", 1 ));
+            });
+        </script>
+    {% endblock %}
+{% endblock %}
